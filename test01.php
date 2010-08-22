@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
 require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
 header('Content-type: text/html; charset=utf-8');
