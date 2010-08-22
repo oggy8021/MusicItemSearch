@@ -6,7 +6,9 @@ header('Content-type: text/html; charset=utf-8');
 
 $pas = new AmazonPAS();
 $pas->set_locale(PAS_LOCALE_JAPAN);
-$res = $pas->item_lookup('B003G2KLXA');
+//$res = $pas->item_search('•ŸŒ´”ü•ä',array('Title' => 'Music is My Life'), PAS_LOCALE_JAPAN);
+$res = $pas->item_search('•ŸŒ´”ü•ä', null, PAS_LOCALE_JAPAN);
+//$res = $pas->item_search('Music is My Life', null, PAS_LOCALE_JAPAN);
 
 print "<pre>";
 var_dump($res);
