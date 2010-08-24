@@ -1,7 +1,7 @@
 ﻿<?php
 // require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
 require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
-
+include_once("dBug.php");
 
 $pas = new AmazonPAS();
 $pas->set_locale(PAS_LOCALE_JAPAN);
@@ -9,9 +9,6 @@ $pas->set_locale(PAS_LOCALE_JAPAN);
 $res = $pas->item_search('福原美穂', null, PAS_LOCALE_JAPAN);
 //$res = $pas->item_search('Music is My Life', null, PAS_LOCALE_JAPAN);
 
-print "<pre>";
-var_dump($res);
-print "</pre>";
-
+new dBug($res);
 
 ?>
