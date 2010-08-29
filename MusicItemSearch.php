@@ -13,7 +13,7 @@ require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
 
 function MusicItemSearch($artist)
 {
-	$noimgUrl = "http://g-ec2.images-amazon.com/images/G/09/nav2/dp/no-image-no-ciu._V192259616_AA300_.gif";
+	$noimgUrl = 'http://g-ec2.images-amazon.com/images/G/09/nav2/dp/no-image-no-ciu._V192259616_AA300_.gif';
 
 //	$MISresult = "[$artist]=>";
 //	$ERRresult = "[$artist]=>";
@@ -45,9 +45,9 @@ function MusicItemSearch($artist)
 	for ($cnt = 1; $cnt <= $lmax; $cnt++)
 	{
 		$MISresult .= '<p><a href="' . $getItems[$cnt]->DetailPageURL . '" target="_blank">';
-		if ("" !==  $getItems[$cnt]->SmallImage->URL)
+		if ("" !=  (String)$getItems[$cnt]->SmallImage->URL)
 		{
-			$MISresult .= '<img src="' . $getItems[$cnt]->SmallImage->URL . '" class="aligncenter" alt="$getItems[$cnt]->ItemAttributes->Title" title="$getItems[$cnt]->ItemAttributes->Title" /><br />';
+			$MISresult .= '<img src="' . $getItems[$cnt]->SmallImage->URL . '" class="aligncenter" alt="' . $getItems[$cnt]->ItemAttributes->Title . '" title="' . $getItems[$cnt]->ItemAttributes->Title . '" /><br />';
 
 		} else {
 			$MISresult .= '<img src="' . $noimgUrl . '" class="aligncenter" /><br />';
