@@ -13,10 +13,7 @@ require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
 
 function MusicItemSearch($artist)
 {
-	$noimgUrl = 'http://g-ec2.images-amazon.com/images/G/09/nav2/dp/no-image-no-ciu._V192259616_AA300_.gif';
-
-//	$MISresult = "[$artist]=>";
-//	$ERRresult = "[$artist]=>";
+	$noimgUrl = './noimg.png';
 
 	$pas = new AmazonPAS();
 	$pas->set_locale(PAS_LOCALE_JAPAN);
@@ -24,13 +21,12 @@ function MusicItemSearch($artist)
 	$opt['Sort'] = '-releasedate';
 	$opt['SearchIndex'] = 'Music';
 	$opt['Artist'] = (String)$artist;
-	$res = $pas->item_search("(String)$artist", $opt, PAS_LOCALE_JAPAN);
+	$res = $pas->item_search((String)$artist, $opt, PAS_LOCALE_JAPAN);
 
 	$getItems =& $res->body->Items->Item;
 	$getItemCnt = count($getItems);
 
 	if (0 === $getItemCnt) {
-//		$ERRreult .= ' 0' . $opt['Artist'];
 		return '';
 
 	} elseif (5 >= $getItemCnt) {
@@ -42,15 +38,17 @@ function MusicItemSearch($artist)
 	}
 
 	$MISresult = "";
-	for ($cnt = 1; $cnt <= $lmax; $cnt++)
+	for ($cnt = 0; $cnt <= ($lmax - 1); $cnt++)
 	{
 		$MISresult .= '<p><a href="' . $getItems[$cnt]->DetailPageURL . '" target="_blank">';
-		if ("" !=  (String)$getItems[$cnt]->SmallImage->URL)
+
+		if ("" !=  $getItems[$cnt]->SmallImage->URL)
 		{
 			$MISresult .= '<img src="' . $getItems[$cnt]->SmallImage->URL . '" class="aligncenter" alt="' . $getItems[$cnt]->ItemAttributes->Title . '" title="' . $getItems[$cnt]->ItemAttributes->Title . '" /><br />';
+			$MISresult .= "test\n";
 
 		} else {
-			$MISresult .= '<img src="' . $noimgUrl . '" class="aligncenter" /><br />';
+			$MISresult .= '<img src="' . $noimgUrl . '" class="aligncenter" width="75" height="75" /><br />';
 
 		}
 
