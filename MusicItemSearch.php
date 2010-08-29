@@ -1,23 +1,45 @@
 ﻿<?php
+
+/*
+	Plugin Name: MusicItemSearch
+	Plugin URI: http://oggy.no-ip.info/blog/
+	Description: AmarokNowPlaying -> artist -> ItemSearch
+	Version: 1.0
+	Author: oggy
+	Author URI: http://oggy.no-ip.info/blog/
+ */
+
 require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
-include_once("dBug.php");
 
 $pas = new AmazonPAS();
 $pas->set_locale(PAS_LOCALE_JAPAN);
-$opt['SearchIndex'] = 'Music';
-$opt['Keywords'] = '福原美穂';
 $opt['ResponseGroup'] = 'Images,ItemAttributes';
 $opt['Sort'] = '-releasedate';
-$res = $pas->item_search('Music', $opt, PAS_LOCALE_JAPAN);
+$opt['SearchIndex'] = 'Music';
+$opt['Artist']='福原美穂';
+$res = $pas->item_search('福原美穂', $opt, PAS_LOCALE_JAPAN);
 
-//debugCon((String) $res->body->Items->Request->ItemSearchRequest->Keywords);
 
-foreach ($res->body->Items->Item as $value)
+$getItems =& $res->body->Items->Item;
+$getItemCnt = count($getItems);
+
+debugCon($getItemCnt);
+
+if (5 >= $getItemCnt)
 {
-	debugCon($value->ASIN . '-' . $value->ItemAttributes->ReleaseDate);
+	$lmax = $getItemCnt;
+} else {
+	$lmax = 5;
 }
 
-//new dBug($res);
+for ($cnt = 1; $cnt <= $lmax; $cnt++)
+{
+	$MISresult = '<p><a href="' . $getItems[$cnt]->DetailPageURL . '" target="_blank">';
+	$MISresult .= '<img src="' . $getItems[$cnt]->SmallImage->URL . '" class="aligncenter" alt="" title="" /><br />';
+	$MISresult .= $getItems[$cnt]->ItemAttributes->Title . '</a></p>\n';
+
+	print $MISresult;
+}
 
 sleep(2);
 
