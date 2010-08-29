@@ -4,8 +4,8 @@ include_once("dBug.php");
 
 $pas = new AmazonPAS();
 $pas->set_locale(PAS_LOCALE_JAPAN);
-$opt['ResponseGroup'] = 'Images';
-$res = $pas->item_search('福原美穂', $opt, PAS_LOCALE_JAPAN);
+$opt['ResponseGroup'] = 'Images,ItemAttributes';
+$res = $pas->item_search('JiLL-Decoy association', $opt, PAS_LOCALE_JAPAN);
 
 debugCon((String) $res->body->Items->Request->ItemSearchRequest->Keywords);
 

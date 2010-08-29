@@ -14,7 +14,7 @@ $res = $pas->item_search('JiLL-Decoy association', $opt, PAS_LOCALE_JAPAN);
 
 foreach ($res->body->Items->Item as $value)
 {
-	debugCon($value->ASIN . ', ' . $value->ItemAttributes->ReleaseDate  . $value->ItemAttributes->Title .  $value->SmallImage->URL);
+	debugCon($value->ASIN . ', ' . $value->ItemAttributes->ReleaseDate  . $value->ItemAttributes->Title . '[' .  $value->SmallImage->URL . ']');
 }
 
 //new dBug($res);
