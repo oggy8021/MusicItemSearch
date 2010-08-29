@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /*
 	Plugin Name: MusicItemSearch
@@ -11,46 +11,44 @@
 
 require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
 
-$pas = new AmazonPAS();
-$pas->set_locale(PAS_LOCALE_JAPAN);
-$opt['ResponseGroup'] = 'Images,ItemAttributes';
-$opt['Sort'] = '-releasedate';
-$opt['SearchIndex'] = 'Music';
-$opt['Artist']='福原美穂';
-$res = $pas->item_search('福原美穂', $opt, PAS_LOCALE_JAPAN);
-
-
-$getItems =& $res->body->Items->Item;
-$getItemCnt = count($getItems);
-
-debugCon($getItemCnt);
-
-if (5 >= $getItemCnt)
+function MusicItemSearch($artist)
 {
-	$lmax = $getItemCnt;
-} else {
-	$lmax = 5;
-}
+//	$MISresult = "[$artist]=>";
+//	$ERRresult = "[$artist]=>";
 
-for ($cnt = 1; $cnt <= $lmax; $cnt++)
-{
-	$MISresult = '<p><a href="' . $getItems[$cnt]->DetailPageURL . '" target="_blank">';
-	$MISresult .= '<img src="' . $getItems[$cnt]->SmallImage->URL . '" class="aligncenter" alt="" title="" /><br />';
-	$MISresult .= $getItems[$cnt]->ItemAttributes->Title . '</a></p>\n';
+	$pas = new AmazonPAS();
+	$pas->set_locale(PAS_LOCALE_JAPAN);
+	$opt['ResponseGroup'] = 'Images,ItemAttributes';
+	$opt['Sort'] = '-releasedate';
+	$opt['SearchIndex'] = 'Music';
+	$opt['Artist'] = (String)$artist;
+	$res = $pas->item_search((String)$artist, $opt, PAS_LOCALE_JAPAN);
 
-	print $MISresult;
-}
+	$getItems =& $res->body->Items->Item;
+	$getItemCnt = count($getItems);
 
-sleep(2);
+	if (0 === $getItemCnt) {
+//		$ERRreult .= ' 0' . $opt['Artist'];
+		return '';
 
-function debugHtml ($val)
-{
-	print "<BR><FONT COLOR=\"red\">[debug] :</FONT><strong>$val</strong><BR>\n";
-}
+	} elseif (5 >= $getItemCnt) {
+		$lmax = $getItemCnt;
 
-function debugCon ($val)
-{
-	print "[debug] :$val.\n";
-}
+	} else {
+		$lmax = 5;
+
+	}
+
+	$MISresult = "";
+	for ($cnt = 1; $cnt <= $lmax; $cnt++)
+	{
+		$MISresult .= '<p><a href="' . $getItems[$cnt]->DetailPageURL . '" target="_blank">';
+		$MISresult .= '<img src="' . $getItems[$cnt]->SmallImage->URL . '" class="aligncenter" alt="" title="" /><br />';
+		$MISresult .= $getItems[$cnt]->ItemAttributes->Title . '</a></p>\n';
+
+	}
+	return $MISresult;
+
+}//MusicItemSearch
 
 ?>
