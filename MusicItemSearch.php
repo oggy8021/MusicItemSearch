@@ -13,7 +13,7 @@ require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
 
 function MusicItemSearch($artist)
 {
-	$noimgUrl = './noimg.png';
+	$noimgUrl = 'http://oggy.no-ip.info/blog/wp-content/plugins/MusicItemSearch/noimg.png';
 
 	$pas = new AmazonPAS();
 	$pas->set_locale(PAS_LOCALE_JAPAN);
@@ -45,7 +45,6 @@ function MusicItemSearch($artist)
 		if ("" !=  $getItems[$cnt]->SmallImage->URL)
 		{
 			$MISresult .= '<img src="' . $getItems[$cnt]->SmallImage->URL . '" class="aligncenter" alt="' . $getItems[$cnt]->ItemAttributes->Title . '" title="' . $getItems[$cnt]->ItemAttributes->Title . '" /><br />';
-			$MISresult .= "test\n";
 
 		} else {
 			$MISresult .= '<img src="' . $noimgUrl . '" class="aligncenter" width="75" height="75" /><br />';
