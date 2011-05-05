@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /*
 	Plugin Name: MusicItemSearch
@@ -11,7 +11,7 @@
 
 require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
 
-function MusicItemSearch($artist)
+function MusicItemSearch($artist, $listed)
 {
 	$noimgUrl = 'http://oggy.no-ip.info/blog/wp-content/plugins/MusicItemSearch/noimg.png';
 
@@ -29,11 +29,11 @@ function MusicItemSearch($artist)
 	if (0 === $getItemCnt) {
 		return '';
 
-	} elseif (5 >= $getItemCnt) {
+	} elseif ($listed >= $getItemCnt) {
 		$lmax = $getItemCnt;
 
 	} else {
-		$lmax = 5;
+		$lmax = $listed;
 
 	}
 
