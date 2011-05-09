@@ -13,7 +13,7 @@ require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
 
 function MusicItemSearch($artist, $listed)
 {
-	$noimgUrl = 'http://oggy.no-ip.info/blog/wp-content/plugins/MusicItemSearch/noimg.png';
+	$noimgUrl = 'http://oggy2.no-ip.info/blog/wp-content/plugins/MusicItemSearch/noimg.png';
 
 	$pas = new AmazonPAS();
 	$pas->set_locale(PAS_LOCALE_JAPAN);
