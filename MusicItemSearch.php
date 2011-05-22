@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /*
 	Plugin Name: MusicItemSearch
@@ -9,11 +9,12 @@
 	Author URI: http://oggy.no-ip.info/blog/
  */
 
-require_once('/usr/lib/php/modules/cloudfusion/cloudfusion.class.php');
+require_once('AWSSDKforPHP/sdk.class.php');
 
 function MusicItemSearch($artist, $listed)
 {
-	$noimgUrl = 'http://oggy2.no-ip.info/blog/wp-content/plugins/MusicItemSearch/noimg.png';
+	$noimgUrl = 'http://oggy.no-ip.info/blog/wp-content/plugins/MusicItemSearch/noimg.png';
+	const PAS_LOCAL_JAPAN = 'jp';
 
 	$pas = new AmazonPAS();
 	$pas->set_locale(PAS_LOCALE_JAPAN);
