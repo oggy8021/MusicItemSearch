@@ -10,19 +10,19 @@
  */
 
 require_once('AWSSDKforPHP/sdk.class.php');
+const PAS_LOCAL_JAPAN = "jp";
 
 function MusicItemSearch($artist, $listed)
 {
 	$noimgUrl = 'http://oggy.no-ip.info/blog/wp-content/plugins/MusicItemSearch/noimg.png';
-	const PAS_LOCAL_JAPAN = 'jp';
 
 	$pas = new AmazonPAS();
-	$pas->set_locale(PAS_LOCALE_JAPAN);
+	$pas->set_locale(self::PAS_LOCALE_JAPAN);
 	$opt['ResponseGroup'] = 'Images,ItemAttributes';
 	$opt['Sort'] = '-releasedate';
 	$opt['SearchIndex'] = 'Music';
 	$opt['Artist'] = (String)$artist;
-	$res = $pas->item_search((String)$artist, $opt, PAS_LOCALE_JAPAN);
+	$res = $pas->item_search((String)$artist, $opt, self::PAS_LOCALE_JAPAN);
 
 	$getItems =& $res->body->Items->Item;
 	$getItemCnt = count($getItems);
