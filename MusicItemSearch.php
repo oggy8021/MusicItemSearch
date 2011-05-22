@@ -4,7 +4,7 @@
 	Plugin Name: MusicItemSearch
 	Plugin URI: http://oggy.no-ip.info/blog/
 	Description: AmarokNowPlaying -> artist -> ItemSearch
-	Version: 1.0
+	Version: 1.1
 	Author: oggy
 	Author URI: http://oggy.no-ip.info/blog/
  */
