@@ -21,7 +21,7 @@ AWSSDKforPHP
 
 ## Licence
 
-[MIT](https://github.com/oggy8021/project/LICENCE)
+MIT
 
 ## Author
 
