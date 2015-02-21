@@ -13,7 +13,7 @@ require_once('AWSSDKforPHP/sdk.class.php');
 
 function MusicItemSearch($artist, $listed)
 {
-	$noimgUrl = 'http://oggy.no-ip.info/blog/wp-content/plugins/MusicItemSearch/noimg.png';
+    $noimgUrl = WP_PLUGIN_URL . '/MusicItemSearch/noimg.png';
 
 	$pas = new AmazonPAS();
 	$pas->set_locale(AmazonPAS::LOCALE_JAPAN);
